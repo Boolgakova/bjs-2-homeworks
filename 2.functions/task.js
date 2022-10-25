@@ -1,6 +1,6 @@
 "use strict"
 
-function getArrayParams(...arr) {
+function getArrayParams(arr) {
   let min = arr[0];
   let max = arr[0];
   let sum = 0;
@@ -17,7 +17,7 @@ function getArrayParams(...arr) {
   return { min: min, max: max, avg: avg };
 }
 
-function worker(...arr) {
+function worker(arr) {
   let sum = 0;
   for (let element of arr){
   sum += element;
@@ -25,17 +25,18 @@ function worker(...arr) {
   return sum;
 }
 
-function makeWork (func, ...arrOfArr) {
+function makeWork (arrOfArr, func) {
   let max = 0;
   for (let arr of arrOfArr){
-    if (func(arr) > max){
-      max = func(arr);
+    const funcResult = func(arr);
+    if (funcResult > max){
+      max = funcResult;
     }
   }
   return max;
 }
 
-function worker2(...arr) {
+function worker2(arr) {
   let min = arr[0];
   let max = arr[0];
   for (let element of arr){
@@ -45,6 +46,5 @@ function worker2(...arr) {
     max = element;
     }
   }
-  let diff = Math.abs(max - min);
-  return diff;
+  return Math.abs(max - min);
 }
