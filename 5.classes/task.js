@@ -5,7 +5,7 @@ class PrintEditionItem{
     this.pagesCount = pagesCount;
     this.state = 100;
     this.type = null;
-  };
+  }
 
   fix(){
     this.state = this.state * 1.5;
@@ -76,19 +76,61 @@ class Library{
 
   findBookBy(type, value){
     for(let book of this.books){
-      if(book.type === value){
+      if(book[type] === value){
         return book;
-      } else{
-        return null;
       }
+    } return null;
+  }
+
+
+  giveBookByName(bookName){
+    const book = this.findBookBy("name", bookName);
+    const bookIndex = this.books.indexOf(book);
+      if(bookIndex !== 1){
+      this.books.splice(bookIndex, 1);
+      return book;
+      } return null;
+    }
+
+}
+
+class Student{
+  constructor (name) {
+    this.name = name;
+  }
+
+  addMark(mark, subjectName){
+    if (mark < 1 || mark > 5 ){
+      console.log("Ошибка, оценка должна быть числом от 1 до 5");
+    } else {
+        if (this[subjectName] === undefined){
+            this[subjectName] = [];
+            this[subjectName].push(mark);
+        } else{
+            this[subjectName].push(mark);
+        }
     }
   }
 
-  giveBookByName(bookName){
-    if(findBookBy(name, bookName) !== null){
-      delete this.books.name;
+  getAverageBySubject(subjectName){
+    if(this[subjectName] !== undefined){
+      let sum = 0;
+      this[subjectName].forEach(mark => sum +=mark);
+      return sum / this[subjectName].length;
     } else {
-      return null;
+      console.log("Несуществующий предмет");
     }
   }
-}
+
+  getAverage(){
+    let allMarks = [];
+
+
+    .forEach(element => allMarks.push(element));
+      }
+    }
+    let sum = 0;
+    allMarks.forEach(element => sum += element);
+    return sum / allMarks.length;
+    }
+  }
