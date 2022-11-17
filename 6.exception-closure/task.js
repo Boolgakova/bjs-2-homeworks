@@ -30,21 +30,28 @@ class Triangle{
   }
 
   getPerimeter(){
-    let Perimeter = this.a + this.b + this.c;
-    return Perimeter;
+    let perimeter = this.a + this.b + this.c;
+    return perimeter;
   }
 
   getArea(){
-    let p = 1/2 * (this.a + this.b + this.c);
+    let p = 1/2 * this.getPerimeter();
     let Area = Math.sqrt(p*(p - this.a)*(p - this.b)*(p - this.c));
     return Number(Area.toFixed(3));
   }
 }
 
 function getTriangle(a, b, c){
-    try{
-      return new Triangle(a, b, c);
-    } catch(Error){
-      return Triangle
-    }
+  try{
+    return new Triangle(a, b, c);
+  } catch(Error){
+      let triangle = new Object();
+      triangle.getArea = function(){
+        return 'Ошибка! Треугольник не существует';
+      };
+      triangle.getPerimeter = function(){
+        return 'Ошибка! Треугольник не существует';
+      };
+      return triangle;
+  }
 }
